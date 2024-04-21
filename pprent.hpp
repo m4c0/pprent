@@ -46,14 +46,14 @@ iter list::end() { return iter{}; }
 iter::iter(DIR *dr) : m_dir{dr}, m_ent{readdir(m_dir)} {}
 bool iter::operator!=(const iter &o) const {
   // pointer comparison suffices for "normal" usage
-  return m_dir != o.m_dir || m_ent != o.m_ent;
+  return m_ent != o.m_ent;
 }
 iter &iter::operator++() {
-  if (m_dir)
+  if (m_dir && m_ent)
     m_ent = readdir(m_dir);
   return *this;
 }
-const char *iter::operator*() const { return m_ent->d_name; }
+const char *iter::operator*() const { return m_ent ? m_ent->d_name : ""; }
 } // namespace pprent
 
 #endif // PPRENT_IMPLEMENTATION
