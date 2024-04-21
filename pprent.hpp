@@ -4,10 +4,12 @@ struct DIR;
 
 namespace pprent {
 class iter {
-  dirent *m_dir;
+  DIR *m_dir;
+  dirent *m_ent;
   friend class list;
 
-  explicit iter(struct dirent *d);
+  explicit iter(DIR *dr);
+  explicit iter();
 
 public:
   bool operator!=(const iter &) const;
@@ -26,4 +28,21 @@ public:
   iter end();
 };
 } // namespace pprent
+
+#ifdef PPRENT_IMPLEMENTATION
+#define MINIRENT_IMPLEMENTATION
+#include "../minirent/minirent.h"
+
+namespace pprent {
+list::list(const char *dir) : m_dir{opendir(dir)} {}
+list::~list() {
+  if (m_dir)
+    closedir(m_dir);
+}
+iter list::begin() { return m_dir ? iter{m_dir} : iter{}; }
+iter list::end() { return iter{}; }
+
+} // namespace pprent
+
+#endif // PPRENT_IMPLEMENTATION
 #endif // PPRENT_HPP
