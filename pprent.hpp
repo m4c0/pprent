@@ -1,6 +1,5 @@
 #ifndef PPRENT_HPP
-struct dirent;
-struct DIR;
+#include "../minirent/minirent.h"
 
 namespace pprent {
 class iter {
@@ -32,7 +31,6 @@ public:
 
 #ifdef PPRENT_IMPLEMENTATION
 #define MINIRENT_IMPLEMENTATION
-#include "../minirent/minirent.h"
 
 namespace pprent {
 list::list(const char *dir) : m_dir{opendir(dir)} {}
