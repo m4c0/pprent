@@ -1,5 +1,9 @@
 #ifndef PPRENT_HPP
+
+// TODO: remove this when minirent use "secure" strncpy
+#define _CRT_SECURE_NO_WARNINGS
 #include "../minirent/minirent.h"
+#undef _CRT_SECURE_NO_WARNINGS
 
 namespace pprent {
 class iter {
