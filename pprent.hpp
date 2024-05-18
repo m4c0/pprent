@@ -2,6 +2,9 @@
 
 // TODO: remove this when minirent use "secure" strncpy
 #define _CRT_SECURE_NO_WARNINGS
+#ifdef PPRENT_IMPLEMENTATION
+#define MINIRENT_IMPLEMENTATION
+#endif
 #include "../minirent/minirent.h"
 #undef _CRT_SECURE_NO_WARNINGS
 
@@ -34,7 +37,6 @@ public:
 } // namespace pprent
 
 #ifdef PPRENT_IMPLEMENTATION
-#define MINIRENT_IMPLEMENTATION
 
 namespace pprent {
 list::list(const char *dir) : m_dir{opendir(dir)} {}
