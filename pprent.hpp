@@ -1,12 +1,13 @@
 #ifndef PPRENT_HPP
 
-// TODO: remove this when minirent use "secure" strncpy
-#define _CRT_SECURE_NO_WARNINGS
 #ifdef PPRENT_IMPLEMENTATION
 #define MINIRENT_IMPLEMENTATION
 #endif
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #include "../minirent/minirent.h"
-#undef _CRT_SECURE_NO_WARNINGS
+#pragma GCC diagnostic pop
 
 namespace pprent {
 class iter {
