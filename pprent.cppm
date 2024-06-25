@@ -1,15 +1,14 @@
-#ifndef PPRENT_HPP
-
-#ifdef PPRENT_IMPLEMENTATION
+module;
 #define MINIRENT_IMPLEMENTATION
-#endif
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #include "../minirent/minirent.h"
 #pragma GCC diagnostic pop
 
-namespace pprent {
+export module pprent;
+
+export namespace pprent {
 class iter {
   DIR *m_dir{};
   dirent *m_ent{};
@@ -37,7 +36,7 @@ public:
 };
 } // namespace pprent
 
-#ifdef PPRENT_IMPLEMENTATION
+module :private;
 
 namespace pprent {
 list::list(const char *dir) : m_dir{opendir(dir)} {}
@@ -60,6 +59,3 @@ iter &iter::operator++() {
 }
 const char *iter::operator*() const { return m_ent ? m_ent->d_name : ""; }
 } // namespace pprent
-
-#endif // PPRENT_IMPLEMENTATION
-#endif // PPRENT_HPP

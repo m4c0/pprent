@@ -1,9 +1,8 @@
 #pragma leco tool
 
-#define PPRENT_IMPLEMENTATION
-#include "pprent.hpp"
-
 #include <stdio.h>
+
+import pprent;
 
 int main() {
   for (auto entry : pprent::list(".")) {
